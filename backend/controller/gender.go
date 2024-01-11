@@ -10,7 +10,14 @@ import (
 // GET /genders
 func ListGenders(c *gin.Context) {
 	var genders []entity.Gender
-	if err := entity.DB().Raw("SELECT * FROM genders").Scan(&genders).Error; err != nil {
+
+	db, err := entity.ConnectDB()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := db.Raw("SELECT * FROM genders").Scan(&genders).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

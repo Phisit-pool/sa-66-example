@@ -41,7 +41,7 @@ function CustomerCreate() {
     } else {
       messageApi.open({
         type: "error",
-        content: "บันทึกข้อมูลไม่สำเร็จ",
+        content: res.message,
       });
     }
   };
@@ -107,6 +107,20 @@ function CustomerCreate() {
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+              <Form.Item
+                label="รหัสนักศึกษา"
+                name="StudentID"
+                rules={[
+                  {
+                    // required: true,
+                    message: "กรุณากรอกรหัสนักศึกษา !",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={24} xl={12}>
               <Form.Item name="GenderID" label="เพศ" rules={[{ required: true,  message: "กรุณาระบุเพศ !", }]}>
                 <Select allowClear>
                   {genders.map((item) => (
@@ -147,6 +161,20 @@ function CustomerCreate() {
                 <Input />
               </Form.Item>
             </Col>
+            <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+              <Form.Item
+                label="LinkedIn"
+                name="LinkedIn"
+                rules={[
+                  {
+                    // required: true,
+                    message: "กรุณากรอก LinkedIn Profile URL !",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
             <Col xs={24} sm={24} md={24} lg={24} xl={24}>
               <Form.Item
                 label="รูปประจำตัว"
@@ -160,7 +188,7 @@ function CustomerCreate() {
                     <PlusOutlined />
                     <div style={{ marginTop: 8 }}>อัพโหลด</div>
                   </div>
-                </Upload>
+                </Upload> 
               </Form.Item>
             </Col>
           </Row>
